@@ -11,10 +11,10 @@ public class MemberRegisterService {
 	MemberDao memberDao;
 	
 	//의존 객체 주입
-	public MemberRegisterService(MemberDao memberDao){
+	public void setMemeberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
-	
+
 	public void execute(RegisterRequest request) {
 		MemberDTO dto = memberDao.selectByEmail(request.getEmail());
 		if(dto == null) {
