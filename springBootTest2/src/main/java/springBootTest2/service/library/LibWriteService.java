@@ -1,4 +1,4 @@
-package springBootTest2.service;
+package springBootTest2.service.library;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,7 +22,7 @@ public class LibWriteService {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		LibraryDTO dto = new LibraryDTO();
 		dto.setIdAddr(request.getRemoteAddr()); //ip주소
-		dto.setMemId(request.getRemoteUser()); //아이디
+		dto.setMemId(authInfo.getUserId()); //아이디
 		dto.setLibWriter(libCommand.getLibWriter()); //글쓴이
 		dto.setLibSubject(libCommand.getLibSubject()); //글제목
 		dto.setLibContent(libCommand.getLibContent()); //내용

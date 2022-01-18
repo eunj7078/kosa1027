@@ -6,6 +6,16 @@
 </head>
 <body>
 자료실<br/>
+<table border= 1 width="600px">
+	<tr><th>글번호</th><th>글쓴이</th><th>제목</th><th>아이디</th></tr>
+	<th:block th:each=" dto : ${list}">
+		<tr><td><a th:href="@{libraryDetail(num=${dto.libNum})}">[[${dto.libNum }]]</a></td>
+			<td>[[${dto.libWriter }]]</td>
+			<td><a href="#">[[${dto.libSubject }]]</a></td>
+			<td>[[${dto.memId }]]</td>
+		</tr>
+	</th:block>
+</table>
 <a href="libForm">자료실 등록</a>
 </body>
 </html>

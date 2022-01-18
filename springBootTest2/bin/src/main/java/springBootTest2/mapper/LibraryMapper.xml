@@ -6,18 +6,7 @@
 	lib_num, lib_writer, lib_subject, lib_content,
     mem_id, id_addr, lib_pw
 </sql>
-<select id="selectAll" resultType="springBootTest2.domain.LibraryDTO">
-	select lib_num libNum, lib_writer libWriter, lib_subject libSubject, mem_id memId
-	from library_1
-</select>
-
-<select id="selectOne" resultType="springBootTest2.domain.LibraryDTO">
-	select lib_num libNum, lib_writer libWriter, lib_subject libSubject, 
-	lib_content libContent, mem_id memId, id_addr idAddr
-	from library_1
-	where lib_num = #{libNum}
-</select> 
-
+ 
 <insert id="libInsert" parameterType="springBootTest2.domain.LibraryDTO">
 	insert into library_1(
 	<include refid="baseColumns" />)
