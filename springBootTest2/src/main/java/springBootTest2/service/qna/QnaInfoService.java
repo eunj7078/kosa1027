@@ -13,8 +13,10 @@ import springBootTest2.mapper.QnAMapper;
 public class QnaInfoService {
 	@Autowired
 	QnAMapper qnaMapper;
-	public void execute(String qnaNum, Model model) {
+	public void execute(Integer qnaNum, Model model) {
+		qnaMapper.visitCount(qnaNum);
 		QnADTO dto = qnaMapper.selectOne(qnaNum);
 		model.addAttribute("dto", dto);
 	}
 }
+

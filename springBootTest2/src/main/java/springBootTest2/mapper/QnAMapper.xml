@@ -28,11 +28,29 @@
 		from qna
 </select>
 
+<update id="visitCount" parameterType="int">
+	update qna
+	set visit_count = visit_count + 1
+	where qna_num = #{qnaNum}
+</update>
+
 <select id="selectOne" 
 	resultType="springBootTest2.domain.QnADTO">
-		select qna_num qnaNum, qna_subject qnaSubject, qna_content qnaContent,
-		visit_count visitCount, qna_regi_date qnaRegiDate
+		select qna_num qnaNum, qna_subject qnaSubject, qna_content qnaContent, 
+		visit_count visitCount, qna_regi_date qnaRegiDate 
 		from qna 
 		where qna_num = #{qnaNum}
 </select>
+
+<delete id="qnaDelete" parameterType="int">
+	delete from qna
+	where qna_NUM = #{qnaNum}
+</delete>
+
+<update id="qnaUpdate" parameterType="springBootTest2.domain.QnADTO">
+	update qna set 
+	qna_subject = #{qnaSubject}, qna_content = #{qnaContent}
+	where qna_num = #{qnaNum}
+</update>
+
 </mapper>

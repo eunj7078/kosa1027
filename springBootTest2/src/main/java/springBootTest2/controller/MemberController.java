@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import springBootTest2.command.MemberCommand;
 import springBootTest2.service.member.MemberDeleteService;
-import springBootTest2.service.member.MemberInfoService;
+import springBootTest2.service.member.MemberDetailService;
 import springBootTest2.service.member.MemberListService;
+import springBootTest2.service.member.MemberModiService;
 import springBootTest2.service.member.MemberNumService;
-import springBootTest2.service.member.MemberUpdateService;
 import springBootTest2.service.member.MemberWriteService;
 
 @Controller
@@ -20,13 +20,13 @@ public class MemberController {
 	@Autowired
 	MemberListService memberListService;
 	@Autowired
-	MemberInfoService memberInfoService;
+	MemberDetailService memberDetailService;
 	@Autowired
 	MemberDeleteService memberDeleteService;
 	@Autowired
 	MemberWriteService memberWriteService;
 	@Autowired
-	MemberUpdateService memberUpdateService;
+	MemberModiService memberModiService;
 	@Autowired
 	MemberNumService memberNumService;
 	
@@ -48,7 +48,7 @@ public class MemberController {
 	}
 	@RequestMapping("memberDetail")
 	public String memberUpdate(@RequestParam(value="num") String memNum, Model model) {
-		memberInfoService.execute(memNum, model);
+		memberDetailService.execute(memNum, model);
 		return "thymeleaf/member/memberDetail";
 	}
 	@RequestMapping("memberDelete")
@@ -58,12 +58,12 @@ public class MemberController {
 	}
 	@RequestMapping("memberModify")
 	public String memberModify(@RequestParam(value = "num") String memNum, Model model) {
-		memberInfoService.execute(memNum, model);
+		memberDetailService.execute(memNum, model);
 		return "thymeleaf/member/memberUpdate";
 	}
 	@RequestMapping("memberUpdate")
 	public String memberModify(MemberCommand memberCommand) {
-		memberUpdateService.execute(memberCommand);
+		memberModiService.execute(memberCommand);
 		return "redirect:memberDetail?num="+memberCommand.getMemNum();
 	}
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springBootTest2.mapper.LibraryMapper">
+<sql id="baseColumns">
+	lib_num, lib_writer, lib_subject, lib_content,
+    mem_id, id_addr, lib_pw
+</sql>
+ 
+<insert id="libInsert" parameterType="springBootTest2.domain.LibraryDTO">
+	insert into library_1(
+	<include refid="baseColumns" />)
+	values(seq_num1.nextval, #{libWriter}, #{libSubject}, 
+	#{libContent}, #{memId}, #{idAddr}, #{libPw})
+</insert>
+
+</mapper>

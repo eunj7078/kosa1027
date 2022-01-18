@@ -7,10 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import springBootTest2.command.QnACommand;
+import springBootTest2.service.qna.QnaDelService;
 import springBootTest2.service.qna.QnaInfoService;
 import springBootTest2.service.qna.QnaListService;
+import springBootTest2.service.qna.QnaModifyService;
+import springBootTest2.service.qna.QnaUpdateService;
 import springBootTest2.service.qna.QnaWriteService;
 
 @Controller
@@ -22,6 +26,12 @@ public class QnAController {
 	QnaListService qnaListService;
 	@Autowired
 	QnaInfoService qnaInfoService;
+	@Autowired
+	QnaDelService qnaDelService;
+	@Autowired
+	QnaModifyService qnaModifyService;
+	@Autowired
+	QnaUpdateService qnaUpdateService;
 	
 	@RequestMapping(value = "qnaRegist", method = RequestMethod.POST)
 	public String qnaRegist(QnACommand qnaCommand, HttpServletRequest request) {
@@ -37,9 +47,24 @@ public class QnAController {
 		qnaListService.execute(model);
 		return "thymeleaf/qna/qnaList";
 	}
-	@RequestMapping("qnaInfo")
-	public String qnaInfo(String qnaNum, Model model) {
+	@RequestMapping(value = "qnaDetail", method = RequestMethod.GET)
+	public String qnaInfo(@RequestParam(value = "num") Integer qnaNum, Model model) {
 		qnaInfoService.execute(qnaNum, model);
-		return "thymeleaf/qna/qnaInfo";
+		return "thymeleaf/qna/qnaDetail";
+	}
+	@RequestMapping("qnaDelete")
+	public String qnaDelete(@RequestParam(value = "num") Integer qnaNum) {
+		qnaDelService.execute(qnaNum);
+		return "redirect:qnaList";
+	}
+	@RequestMapping("qnaModify")
+	public String qnaModify(@RequestParam(value = "num") Integer qnaNum, Model model) {
+		qnaModifyService.execute(qnaNum, model);
+		return "thymeleaf/qna/qnaUpdate";
+	}
+	@RequestMapping("qnaUpdate")
+	public String qnaUpdate(QnACommand qnaCommand) {
+		qnaUpdateService.execute(qnaCommand);
+		return "redirect:qnaDetail?num="+qnaCommand.getQnaNum();
 	}
 }

@@ -10,7 +10,7 @@ import springBootTest2.mapper.MemberMapper;
 
 @Component
 @Service
-public class MemberUpdateService {
+public class MemberModiService {
 	@Autowired
 	MemberMapper memberMapper;
 	public void execute(MemberCommand memberCommand) {

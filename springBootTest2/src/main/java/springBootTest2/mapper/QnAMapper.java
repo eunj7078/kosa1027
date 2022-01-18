@@ -12,5 +12,8 @@ import springBootTest2.domain.QnADTO;
 public interface QnAMapper {
 	public Integer qnaInsert(QnADTO dto);
 	public List<QnADTO> selectAll();
-	public QnADTO selectOne(String qnaNum);
+	public QnADTO selectOne(Integer qnaNum);
+	public Integer visitCount(Integer qnaNum);
+	public Integer qnaDelete(Integer qnaNum);
+	public Integer qnaUpdate(QnADTO dto);
 }

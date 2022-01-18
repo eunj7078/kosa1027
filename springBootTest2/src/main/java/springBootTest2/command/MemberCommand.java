@@ -20,4 +20,6 @@ public class MemberCommand { //Command는 html과 같아야 함
 	String memPhone2;
 	String memAddr;
 	String memEmail;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	Date memRegiDate;
 }
